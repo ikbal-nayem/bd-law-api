@@ -103,7 +103,7 @@ class Retrival:
             print(f'[Error] LLM response JSON: {json_str}')
             return {'query': question, 'language': 'en'}
 
-    async def selfQuery(self, query: str, act:str, n_results=5):
+    async def selfQuery(self, query: str, act:str, n_results=5) -> tuple[dict, str]:
         query_json = await self.generateQueryAndFilters(query)
         q_language = query_json.get("language")
         print("[Query JSON]", query_json, "\n")

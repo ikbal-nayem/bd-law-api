@@ -12,7 +12,7 @@ retrival = Retrival(client)
 
 
 async def getAnswer(request: ChatRequest):
-    act = request.act
+    act = request.act or "DEFAULT"
     last_message_id = request.messages[-1].id
     last_message = request.messages[-1].content
     print("[Query] : "+last_message)
@@ -24,9 +24,6 @@ async def getAnswer(request: ChatRequest):
         context_list.append(context_str)
     sq_context_text = "\n\n---\n\n".join(context_list)
 
-    # if sq_context_text:
-    #     print("[Context] :", sq_context_text)
-    # return sq_context_text
     t = chat_prompt.invoke(
         {'question': last_message, 'contexts': sq_context_text})
     messages = generateMessages(

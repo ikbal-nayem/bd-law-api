@@ -24,7 +24,7 @@ def insertHistory(history: ConversationHistory):
         print(f"\nError inserting document: {e}")
 
 
-def setFeedback(message_id: str, rating: str, feedback: str, suggested_answer: str = None):
+def setFeedback(message_id: str, rating: str, feedback: str|None, suggested_answer: str | None = None):
     try:
         qa_collection.update_one(
             {"message_id": message_id},
